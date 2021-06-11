@@ -35,7 +35,6 @@ import CompareList from "./CompareList.vue";
 import RankingTable from "./RankingTable.vue";
 import { sortRates } from "../utils/sort.js";
 import { convertToMXN, convertToArray } from "../utils/convert.js";
-import { getAssets } from "../services/coincap.js";
 import { getSymbols, compareRates, getLatest } from "../services/fixer.js";
 
 const { state, actions, getters } = inject("rates");
@@ -45,7 +44,6 @@ let rateSelected = reactive({ name: "" });
 
 const getData = async () => {
   const latest = await getLatest();
-  console.log(latest);
   symbols.value = convertToArray(latest.rates);
   actions.setRanking(sortRates(latest.rates));
   const data = convertToMXN(latest);
@@ -54,7 +52,6 @@ const getData = async () => {
 };
 
 onMounted(async () => {
-  await getAssets();
   await getData();
   const filter = getters.dataToCompare();
   chart.value = c3.generate({
