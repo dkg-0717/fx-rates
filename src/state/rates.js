@@ -1,6 +1,8 @@
 import { reactive, readonly } from 'vue'
 
 const state = reactive({
+  error: '',
+  showToast: false,
   rawData: [],
   rates: [],
   ranking: [],
@@ -27,6 +29,12 @@ const actions = {
   },
   removeRate(rate) {
     state.compare = state.compare.filter(r => r !== rate)
+  },
+  setError(error) {
+    state.error = error
+  },
+  showToast(value) {
+    state.showToast = value
   }
 }
 
@@ -44,6 +52,16 @@ const getters = {
         return r
       }
     })
+  },
+  validRate(rate) {
+    let isValid = false
+    const data = state.rawData
+    for (let d = 0; d < data.length; d++) {
+      if (data[d].includes(rate)) {
+        isValid = true
+      }
+    }
+    return isValid
   }
 }
 

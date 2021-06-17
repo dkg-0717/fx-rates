@@ -1,4 +1,5 @@
 <template>
+  <!-- <template v-if="state.ranking.length > 0 && state.error === ''"> -->
   <table>
     <thead>
       <tr class="bg-gray-100 border-b-2 border-gray-400">
@@ -36,9 +37,16 @@
       </tr>
     </tbody>
   </table>
+  <!-- </template> -->
+  <template v-if="state.error">
+    <div class="table-msg">
+      <Error :msg="state.error" />
+    </div>
+  </template>
 </template>
 
 <script setup>
+import Error from "./shared/Error.vue";
 import { inject } from "vue";
 
 const { state } = inject("rates");

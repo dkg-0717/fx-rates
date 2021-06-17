@@ -12,6 +12,7 @@ body{
   height: 100%;
   row-gap: 2rem;
   display: grid;
+  position: relative;
 }
 
 .wrapper{
@@ -67,6 +68,9 @@ table td{
 .graphic{
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .compare-container{
@@ -116,4 +120,26 @@ table td{
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.table-msg{
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid#EEE;
+  border-right: 1px solid#EEE;
+  border-bottom: 1px solid#EEE;
+}
+
+@media (max-width:768px){
+  .graphic-container{
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .compare-inputs{
+    grid-template-columns: 1fr 1fr;
+  }
 }
